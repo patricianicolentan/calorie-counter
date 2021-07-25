@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Diary {% endblock %}</h1>
+    <p> This page will show the diary database.</p>
+    <p> Still working on - adding in text (for the food)</p>
+
+    <a href ="/adddiarylog" method="POST" class="btn btn-outline-secondary">Add Diary Log</a>
+    <p></p><p></p>
+
+    <table border = 1>
+    	<thead>
+    		<th>Date</th>
+    		<th>Weight</th>
+    		<th>Exercised?</th>
+    		<th>Overate?</th>
+    		<th>Breakfast</th>
+    		<th>Calories</th>
+    		<th>Lunch</th>
+    		<th>Calories</th>
+    		<th>Dinner</th>
+    		<th>Calories</th>
+    		<th>Snack 1</th>
+    		<th>Calories</th>
+    		<th>Snack 2</th>
+    		<th>Calories</th>
+    		<th>Snack 3</th>
+    		<th>Calories</th>
+    		<th>Snack 4</th>
+    		<th>Calories</th>
+    		<th>Snack 5</th>
+    		<th>Calories</th>
+    		<th>Snack 6</th>
+    		<th>Calories</th>
+    		<th>Total Calories</th>
+    		<th>Max Calories</th>
+    		<th>Calories Left</th>
+
+    	</thead>
+    	{% for row in diary %}
+    <tr>
+    	<td>{{ row[0]}}</td>
+    	<td>{{ row[1]}}</td>
+    	<td>{{ row[2]}}</td>
+    	<td>{{ row[3]}}</td>    	
+    	<td>{{ row[4]}}</td>
+    	<td>{{ row[5]}}</td>
+    	<td>{{ row[6]}}</td>
+    	<td>{{ row[7]}}</td>    	
+    	<td>{{ row[8]}}</td>
+    	<td>{{ row[9]}}</td>
+    	<td>{{ row[10]}}</td>
+    	<td>{{ row[11]}}</td>    	
+    	<td>{{ row[12]}}</td>
+    	<td>{{ row[13]}}</td>
+    	<td>{{ row[14]}}</td>
+    	<td>{{ row[15]}}</td>    	
+    	<td>{{ row[16]}}</td>
+    	<td>{{ row[17]}}</td>
+    	<td>{{ row[18]}}</td>
+    	<td>{{ row[19]}}</td>
+    	<td>{{ row[20]}}</td>    	
+    	<td>{{ row[21]}}</td>    	
+    	<td>{{ row[22]}}</td>    	
+    	<td>{{ row[23]}}</td>    	
+    	<td>{{ row[24]}}</td>    	
+    	<td>{{ row[25]}}</td>
+    	<!--<td><a href="/addfood/{{row.foodname}}" class="btn btn-outline-secondary btn-sm">Update</a> </td>-->
+    </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+
+{% endblock %}	
+

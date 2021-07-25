@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Calculate Calories {% endblock %}</h1>
+    <p> This page will calculate the calories for a given food serving.</p>
+
+    <form action="/calccal" method = "POST">
+    	<p>Food Name<input type="text" name="foodname"/></p>
+        <p>My Serving<input type="text" name="myserving"/></p>
+    	<p><input type="submit" value="Calculate Calories" class="btn btn-secondary"></p>
+    </form> 
+
+    <form action="/calcclear" method = "POST">
+		<p><input type="submit" value="Clear Calculations" class="btn btn-secondary"></p>
+	</form>
+
+	<p>Total Calories: {{ mytotalcalories }}</p>
+
+
+    <table border = 1>
+    	<thead>
+    		<th>Food</th>
+    		<th>Serving Size</th>
+    		<th>Serving Size in Grams</th>
+    		<th>Calories per Serving</th>
+            <th>My Serving</th>
+            <th>Calories</th>
+    	</thead>
+    	{% for row in calorielog %}
+    <tr>
+    	<td>{{ row[0]}}</td>
+    	<td>{{ row[1]}}</td>
+    	<td>{{ row[2]}}</td>
+    	<td>{{ row[3]}}</td>
+        <td>{{ row[4]}}</td>
+        <td>{{ row[5]}}</td>
+    	<!--<td><a href="/addfood/{{row.foodname}}" class="btn btn-outline-secondary btn-sm">Update</a> </td>-->
+    </tr>
+        {% endfor %}
+    </table>
+
+	<!--
+	<table border = 1>
+		<td>Food</td>
+		<td>Serving Size</td>
+		<td>Serving Size in Grams</td>
+		<td>Calories per Serving</td>
+		<td>Add Food</td>
+		{% for row in calorielog %}
+	<tr>
+		<form action="/food" method="POST">
+			<td><input type="text" name="foodname" value={{ row[0]}}></td>
+			<td><input type="text" name="serving1" value={{ row[1]}}></td>
+			<td><input type="text" name="serving2" value={{ row[2]}}></td>
+			<td><input type="text" name="calories1" value={{ row[3]}}></td>
+		
+			<td><input type="submit" value="addfood"></td>
+		</form>
+	</tr>
+		{% endfor %}
+	</table>
+
+-->
+
+
+
+
+
+
+
+
+
+{% endblock %}	
+

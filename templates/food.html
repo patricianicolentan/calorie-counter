@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Food {% endblock %}</h1>
+    <p> This page will show the food database.</p>
+
+    <a href ="/addfood" method="POST" class="btn btn-outline-secondary">Add Food</a>
+    <a href ="/calccal" method="POST" class="btn btn-outline-secondary">Calculate Calories</a>
+    <p></p><p></p>
+
+    <p>Total Calories: {{ mytotalcalories }}</p>
+
+    <table border = 1>
+    	<thead>
+    		<th>Food</th>
+    		<th>Serving Size</th>
+    		<th>Serving Size in Grams</th>
+    		<th>Calories per Serving</th>
+    	</thead>
+    	{% for row in calorielog %}
+    <tr>
+    	<td>{{ row[0]}}</td>
+    	<td>{{ row[1]}}</td>
+    	<td>{{ row[2]}}</td>
+    	<td>{{ row[3]}}</td>
+    	<!--<td><a href="/addfood/{{row.foodname}}" class="btn btn-outline-secondary btn-sm">Update</a> </td>-->
+    </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+
+{% endblock %}	
+
