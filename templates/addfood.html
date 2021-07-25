@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>{% block title %} Add Food {% endblock %}</h1>
-    <p> This page will add a food to the food database.</p>
+    <p> Add a food to the food database.</p>
 
     <form action="/addfood" method = "POST">
     	<p>Food Name<input type="text" name="foodname"/></p>
@@ -11,36 +11,6 @@
     	<p>Calories per Serving<input type="text" name="calories1"/></p>
     	<p><input type="submit" value="Add Food" class="btn btn-secondary"></p>
     </form> 
-
-	<!--
-	<table border = 1>
-		<td>Food</td>
-		<td>Serving Size</td>
-		<td>Serving Size in Grams</td>
-		<td>Calories per Serving</td>
-		<td>Add Food</td>
-		{% for row in calorielog %}
-	<tr>
-		<form action="/food" method="POST">
-			<td><input type="text" name="foodname" value={{ row[0]}}></td>
-			<td><input type="text" name="serving1" value={{ row[1]}}></td>
-			<td><input type="text" name="serving2" value={{ row[2]}}></td>
-			<td><input type="text" name="calories1" value={{ row[3]}}></td>
-		
-			<td><input type="submit" value="addfood"></td>
-		</form>
-	</tr>
-		{% endfor %}
-	</table>
-
--->
-
-
-
-
-
-
-
 
 
 {% endblock %}	
