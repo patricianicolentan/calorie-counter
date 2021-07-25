@@ -3,16 +3,15 @@ from flask import render_template
 from flask import request, flash, redirect, url_for
 import mariadb
 
-# calorie-counter-320901 is personal project id
-
 
 mytotalcalories = 0
 
 def get_db_connection():
 	try:
+	# change this to your settings
 	    conn = mariadb.connect(
 	        user="root",
-	        password="Joyisacutepotato",
+	        password="password",
 	        host="localhost",
 	        port=3306,
 	        database="calories"
@@ -30,8 +29,6 @@ app = Flask(__name__)
 def index():
 
 	return render_template('index.html')
-	#return "This will be my calorie counter!"
-
 
 
 @app.route("/calcclear", methods=["GET", "POST"])
@@ -42,18 +39,11 @@ def calcclear():
 			conn = get_db_connection()
 		except:
 			return "1"
-		print("heh/")
 		try:
 			cur = conn.cursor()
 		except:
 			return "2"
-		print("ono")
 
-		#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
-	
-
-		#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-		#	servingsize, servinggrams, caloriesperserving, foodname))
 
 		try:
 			cur.execute("UPDATE calorielog set myserving = NULL, mycalories = NULL where myserving is not null")
@@ -79,7 +69,6 @@ def calcclear():
 		return render_template('calccal.html', calorielog = calorielog, mytotalcalories = mytotalcalories)
 
 
-		# end
 
 	else:
 		try:
@@ -109,21 +98,15 @@ def calccal():
 				conn = get_db_connection()
 			except:
 				return "1"
-			print("heh/")
 			try:
 				cur = conn.cursor()
 			except:
 				return "2"
-			print("ono")
 
-			#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 			try:
 			 	cur.execute("UPDATE calorielog set myserving = '{}', mycalories = (myserving/servinggrams*caloriesperserving) WHERE food = '{}'".format(myserving, foodname))
-			#try:
-			#	cur.execute(sql)
 			except mariadb.Error as e:
 				print(f"Error: {e}")
-			print("here")
 
 		
 
@@ -153,7 +136,6 @@ def calccal():
 			return render_template('calccal.html', calorielog = calorielog, mytotalcalories = mytotalcalories)
 
 
-		# end
 		except mariadb.Error as e:
 			print(f"Error: {e}")
 			return "Database Connection Error"
@@ -162,9 +144,6 @@ def calccal():
 	else:
 		conn = get_db_connection()
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
 
 		cur.execute("SELECT * FROM calorielog")
 		calorielog = cur.fetchall()
@@ -172,11 +151,9 @@ def calccal():
 		try:
 			cur.execute("SELECT sum(mycalories) FROM calorielog")
 			mytotalcalories = cur.fetchone()[0]
-			print("hihi")
 		except mariadb.Error as e:
 			print(f"Error: {e}")
 
-		#conn.commit()
 		conn.close()
 		return render_template('calccal.html', calorielog = calorielog, mytotalcalories = mytotalcalories)
 
@@ -203,16 +180,11 @@ def addfood():
 			except:
 				return "2"
 
-			#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 			try:
 			 	cur.execute("INSERT INTO calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 			
-			#try:
-			#	cur.execute(sql)
 			except mariadb.Error as e:
 				print(f"Error: {e}")
-			#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-			#	servingsize, servinggrams, caloriesperserving, foodname))
 			try:
 				conn.commit()
 			except:
@@ -245,7 +217,6 @@ def food():
 
 		conn = get_db_connection()
 		cur = conn.cursor()
-		#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 			servingsize, servinggrams, caloriesperserving, foodname))
 		# selects all again updated
@@ -255,15 +226,12 @@ def food():
 
 		conn.close()
 
-		# end
 		return render_template('food.html', calorielog=calorielog)
 
 	else:		
 		conn = get_db_connection()
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
+
 
 		cur.execute("SELECT * FROM calorielog")
 		calorielog = cur.fetchall()
@@ -275,8 +243,6 @@ def food():
 			print(f"Error: {e}")
 
 		
-
-		#conn.commit()
 		conn.close()
 
 
@@ -321,19 +287,16 @@ def adddiarylog():
 			s6calories = request.form['s6calories']
 
 
-			print("ok1")
 
 
 			try: 
 				conn = get_db_connection()
 			except:
 				return "1"
-			print("ok2")
 			try:
 				cur = conn.cursor()
 			except:
 				return "2"
-			print("ok3")
 
 			if not weightx:
 				weightx = 0
@@ -378,10 +341,7 @@ def adddiarylog():
 
 
 
-		#update diary set weight = null where date = ('2021-08-08');
 			try:	
-				# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-			#servingsize, servinggrams, caloriesperserving, foodname))
 				cur.execute("INSERT INTO diary (date) VALUES ('{}')".format(datex))
 				print("date written")
 				cur.execute("UPDATE diary SET weight = '{}' where date ='{}'".format(weightx, datex))
@@ -412,22 +372,14 @@ def adddiarylog():
 				cur.execute("UPDATE diary SET s6calories = '{}' where date = '{}'".format(s6calories, datex))
 
 
-				print("vars d")
 				conn.commit()
-				print("committed")
 
 
-				#("INSERT INTO diary (weight, exercised, overate, breakfast, lunch, dinner, snack1, snack2, snack3, snack4, snack5, snack6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (weightx, exercisedx, overatex, breakfastx, lunchx, dinnerx, snack1x, snack2x, snack3x, snack4x, snack5x, snack6x))
 			except mariadb.Error as e:
 				print("fail")
 				print(f"Error: {e}")
-				#else:
-					#print("else")
-					#pass
+	
 
-			#print("ok4")
-
-			print("Finis!")
 
 
 			cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
@@ -444,15 +396,10 @@ def adddiarylog():
 	else:
 		conn = get_db_connection()
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
 
 		cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
-		print("boo")
 
-		#conn.commit()
 		conn.close()
 
 		return render_template('adddiarylog.html', diary=diary)
@@ -475,37 +422,29 @@ def diary():
 		snack6x = request.form['snack6']
 
 
-		# make a list of all the vars I can update
 
 		conn = get_db_connection()
 		cur = conn.cursor()
 
-		# for each option I can update
 
-		print("ahh")
-		# selects all again updated
-		#cur.execute("SELECT * FROM diary")
+
 		cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 
 		diary = cur.fetchall()
 
 		conn.close()
 
-		# end
 		return render_template('diary.html', diary=diary)
 
 	else:		
 		conn = get_db_connection()
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
+
 
 		cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
 
-		#conn.commit()
 		conn.close()
 
 		return render_template('diary.html', diary=diary)
@@ -518,4 +457,3 @@ if __name__ == "__main__":
 
 
 
-# NOTE - LATEST PROBLEM IS it overwrites and empties earleir recorded values
