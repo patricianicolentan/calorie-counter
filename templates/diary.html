@@ -2,8 +2,7 @@
 
 {% block content %}
     <h1>{% block title %} Diary {% endblock %}</h1>
-    <p> This page will show the diary database.</p>
-    <p> Still working on - adding in text (for the food)</p>
+    <p> View the diary database.</p>
 
     <a href ="/adddiarylog" method="POST" class="btn btn-outline-secondary">Add Diary Log</a>
     <p></p><p></p>
@@ -65,7 +64,6 @@
     	<td>{{ row[23]}}</td>    	
     	<td>{{ row[24]}}</td>    	
     	<td>{{ row[25]}}</td>
-    	<!--<td><a href="/addfood/{{row.foodname}}" class="btn btn-outline-secondary btn-sm">Update</a> </td>-->
     </tr>
         {% endfor %}
     </table>
