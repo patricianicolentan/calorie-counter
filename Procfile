@@ -1,1 +1,1 @@
-web: gunicorn caloriecounter.wsgi
+	web: gunicorn cc-caloriecounter.wsgi
