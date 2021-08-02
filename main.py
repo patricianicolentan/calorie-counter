@@ -9,7 +9,7 @@ import psycopg2
 # calorie-counter-320901 is personal project id
 # postgresql-regular-89461
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 mytotalcalories = 0
 
@@ -514,6 +514,3 @@ def diary():
 if __name__ == "__main__":
 	app.run(host="127.0.0.1", port=8080, debug=True)
 
-
-
-# NOTE - LATEST PROBLEM IS it overwrites and empties earleir recorded values
