@@ -5,6 +5,7 @@ import os
 import psycopg2
 #import mariadb
 
+app = Flask(__name__)
 
 # calorie-counter-320901 is personal project id
 # postgresql-regular-89461
@@ -23,7 +24,6 @@ def get_db_connection():
 
 
 
-app = Flask(__name__)
 
 @app.route("/")
 def index():
@@ -514,3 +514,4 @@ def diary():
 if __name__ == "__main__":
 	port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
