@@ -9,7 +9,7 @@ import psycopg2
 # calorie-counter-320901 is personal project id
 # postgresql-regular-89461
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 mytotalcalories = 0
 
@@ -64,7 +64,7 @@ def calcclear():
 		except:
 			return "4"
 
-		cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving, myserving, mycalories FROM calorielog")
+		cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving, myserving, mycalories FROM calorielog ORDER BY food")
 		calorielog = cur.fetchall()
 
 		try:
@@ -134,7 +134,7 @@ def calccal():
 
 
 			try:
-				cur.execute("SELECT * FROM calorielog")
+				cur.execute("SELECT * FROM calorielog ORDER BY food")
 			except:
 				print("Error")
 
@@ -165,7 +165,7 @@ def calccal():
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
 
-		cur.execute("SELECT * FROM calorielog")
+		cur.execute("SELECT * FROM calorielog ORDER BY food")
 		calorielog = cur.fetchall()
 
 		try:
@@ -217,7 +217,7 @@ def addfood():
 			except:
 				return "4"
 
-			cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving, mycalories FROM calorielog")
+			cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving, mycalories FROM calorielog ORDER BY food")
 			calorielog = cur.fetchall()
 			conn.close()
 			return render_template('food.html', calorielog = calorielog)
@@ -248,7 +248,7 @@ def food():
 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 			servingsize, servinggrams, caloriesperserving, foodname))
 		# selects all again updated
-		cur.execute("SELECT * FROM calorielog")
+		cur.execute("SELECT * FROM calorielog ORDER BY food")
 
 		calorielog = cur.fetchall()
 
@@ -268,7 +268,7 @@ def food():
 		calorielog = cur.fetchall()
 
 		try:
-			cur.execute("SELECT sum(mycalories) FROM calorielog")
+			cur.execute("SELECT sum(mycalories) FROM calorielog ORDER BY food")
 			mytotalcalories = cur.fetchone()[0]
 		except:
 			print("Error")
@@ -513,7 +513,3 @@ def diary():
 
 if __name__ == "__main__":
 	app.run(host="127.0.0.1", port=8080, debug=True)
-
-
-
-# NOTE - LATEST PROBLEM IS it overwrites and empties earleir recorded values
