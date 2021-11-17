@@ -1,1 +1,1 @@
-	web: gunicorn main:cc-calorie-counter
+web gunicorn manage:cc-calorie-counter
