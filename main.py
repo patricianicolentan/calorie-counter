@@ -235,6 +235,7 @@ def addfood():
 
 @app.route("/food", methods=["GET", "POST"])
 def food():
+	mytotalcalories = 0
 	if request.method == "POST":
 		foodname = request.form['foodname']
 		serving1 = request.form['serving1']
