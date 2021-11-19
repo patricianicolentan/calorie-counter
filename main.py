@@ -57,7 +57,7 @@ def calcclear():
 		try:
 			cur.execute("UPDATE calorielog set myserving = NULL, mycalories = NULL where myserving is not null")
 		except:
-			print("Error")
+			print("Error1")
 
 		try:
 			conn.commit()
@@ -71,7 +71,7 @@ def calcclear():
 			cur.execute("SELECT sum(mycalories) FROM calorielog")
 			mytotalcalories = cur.fetchone()[0]
 		except:
-			print("Error")
+			print("Error2")
 
 
 		conn.close()
@@ -84,13 +84,13 @@ def calcclear():
 		try:
 			cur.execute("SELECT * FROM calorielog")
 		except:
-			print("Error")
+			print("Error3")
 
 		try:
 			cur.execute("SELECT sum(mycalories) FROM calorielog")
 			mytotalcalories = cur.fetchone()[0]
 		except:
-			print("Error")
+			print("Error4")
 
 
 		calorielog = cur.fetchall()
@@ -121,7 +121,7 @@ def calccal():
 			#try:
 			#	cur.execute(sql)
 			except:
-				print("Error")
+				print("Error5")
 			print("here")
 
 		
@@ -129,14 +129,14 @@ def calccal():
 			try:
 				conn.commit()
 			except:
-				print("Error")
+				print("Error6")
 
 
 
 			try:
 				cur.execute("SELECT * FROM calorielog ORDER BY food")
 			except:
-				print("Error")
+				print("Error7")
 
 
 			calorielog = cur.fetchall()
@@ -145,7 +145,7 @@ def calccal():
 				cur.execute("SELECT sum(mycalories) FROM calorielog")
 				mytotalcalories = cur.fetchone()[0]
 			except:
-				print("Error")
+				print("Error8")
 
 			conn.close()
 
@@ -154,7 +154,7 @@ def calccal():
 
 		# end
 		except:
-			print("Error")
+			print("Error9")
 			return "Database Connection Error"
 			return render_template('calccal.html')
 
@@ -173,7 +173,7 @@ def calccal():
 			mytotalcalories = cur.fetchone()[0]
 			print("hihi")
 		except:
-			print("Error")
+			print("Error10")
 
 		#conn.commit()
 		conn.close()
@@ -209,7 +209,7 @@ def addfood():
 			#try:
 			#	cur.execute(sql)
 			except:
-				print("Error")
+				print("Error11")
 			#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 			#	servingsize, servinggrams, caloriesperserving, foodname))
 			try:
@@ -225,6 +225,7 @@ def addfood():
 
 		# end
 		except:
+			print("Error12")
 			return "Database Connection Error"
 			return render_template('addfood.html')
 
@@ -257,7 +258,7 @@ def food():
 		try:
 			cur.execute("SELECT * FROM calorielog ORDER BY food")
 		except:
-			print("Error")
+			print("Error14")
 
 		calorielog = cur.fetchall()
 
@@ -275,7 +276,7 @@ def food():
 		try:
 			cur.execute("SELECT * FROM calorielog ORDER BY food")
 		except:
-			print("Error")
+			print("Error15")
 
 		calorielog = cur.fetchall()
 
@@ -283,7 +284,7 @@ def food():
 			cur.execute("SELECT sum(mycalories) FROM calorielog ORDER BY food")
 			mytotalcalories = cur.fetchone()[0]
 		except:
-			print("Error")
+			print("Error16")
 
 		
 
