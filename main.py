@@ -515,8 +515,11 @@ def adddiarylog():
 
 
 			print("vars d")
-			conn.commit()
-			print("committed")
+			try:
+				conn.commit()
+				print("committed")
+			except:
+				print("commit diary log failed")
 
 
 				#("INSERT INTO diary (weight, exercised, overate, breakfast, lunch, dinner, snack1, snack2, snack3, snack4, snack5, snack6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (weightx, exercisedx, overatex, breakfastx, lunchx, dinnerx, snack1x, snack2x, snack3x, snack4x, snack5x, snack6x))
@@ -529,8 +532,10 @@ def adddiarylog():
 			#print("ok4")
 
 			print("Finis!")
-
-			cur.execute("SELECT * FROM diary")
+			try:
+				cur.execute("SELECT * FROM diary")
+			except:
+				print("diary get failed")
 			#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 			diary = cur.fetchall()
 			conn.close()
