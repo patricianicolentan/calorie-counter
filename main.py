@@ -246,10 +246,18 @@ def food():
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
 		#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
-		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
+
+		try:
+			cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 			servingsize, servinggrams, caloriesperserving, foodname))
+		except:
+			print("Error writing food")
 		# selects all again updated
-		cur.execute("SELECT * FROM calorielog ORDER BY food")
+
+		try:
+			cur.execute("SELECT * FROM calorielog ORDER BY food")
+		except:
+			print("Error")
 
 		calorielog = cur.fetchall()
 
@@ -264,8 +272,11 @@ def food():
 		#cur.execute(
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
+		try:
+			cur.execute("SELECT * FROM calorielog ORDER BY food")
+		except:
+			print("Error")
 
-		cur.execute("SELECT * FROM calorielog")
 		calorielog = cur.fetchall()
 
 		try:
