@@ -252,7 +252,7 @@ def deletefood():
 				return "2"
 
 			try:
-			 	cur.execute("DELETE FROM calorielog WHERE food = ('{}')".format(foodnamedel))
+			 	cur.execute("DELETE FROM calorielog WHERE food = '{}'".format(foodnamedel))
 			 	#cur.execute("INSERT INTO diary (date) VALUES ('{}')".format(datex))
 
 			 	#cur.execute("INSERT INTO calorielog VALUES (%s, %s, %s, %s)",
