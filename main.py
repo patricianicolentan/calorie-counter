@@ -274,10 +274,10 @@ def deletefood():
 		except:
 			print("Error12")
 			return "Database Connection Error"
-			return render_template('addfood.html')
+			return render_template('deletefood.html')
 
 	else:
-		return render_template('addfood.html')
+		return render_template('deletefood.html')
 
 
 
