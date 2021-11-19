@@ -202,8 +202,12 @@ def addfood():
 				return "2"
 
 			#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
+			#cur.execute("INSERT INTO calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (foodname, serving1, serving2, calories1)")
+			#cur.execute('INSERT INTO emp VALUES(%s, %s, %s, %s)',
+                                    #(id, name, salary, dept))
 			try:
-			 	cur.execute("INSERT INTO calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
+			 	cur.execute("INSERT INTO calorielog VALUES (%s, %s, %s, %s, %s, %s)",
+			 	(calories1, foodname, 0, 0, serving2, serving1))
 			
 			#try:
 			#	cur.execute(sql)
