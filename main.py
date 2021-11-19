@@ -191,7 +191,6 @@ def addfood():
 			serving1 = request.form['serving1']
 			serving2 = request.form['serving2']
 			calories1 = request.form['calories1']
-			myserving = request.form['myserving']
 
 			try: 
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -217,7 +216,7 @@ def addfood():
 			except:
 				return "4"
 
-			cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving, mycalories FROM calorielog ORDER BY food")
+			cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving FROM calorielog ORDER BY food")
 			calorielog = cur.fetchall()
 			conn.close()
 			return render_template('food.html', calorielog = calorielog)
