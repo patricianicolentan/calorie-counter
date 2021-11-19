@@ -415,15 +415,14 @@ def adddiarylog():
 			except:
 				print("diary fail 1")
 
-			if weightx not NULL:
-
+			if weightx:
 				try:
 					cur.execute("UPDATE diary SET weight = '{}' where date ='{}'".format(weightx, datex))
 					print("w")
 				except:
 					print("diary fail 2")
 
-			if exercisedx not NULL:
+			if exercisedx:
 				try:
 					cur.execute("UPDATE diary SET exercised = '{}' where date ='{}'".format(exercisedx, datex))
 					print("e")
@@ -431,7 +430,7 @@ def adddiarylog():
 				except:
 					print("diary fail 3")
 
-			if overatex not NULL:
+			if overatex:
 				try:
 					cur.execute("UPDATE diary SET overate = {} where date ='{}'".format(overatex, datex))
 					print("o")
@@ -439,109 +438,109 @@ def adddiarylog():
 				except:
 					print("diary fail 4")
 
-			if breakfastx not NULL:
+			if breakfastx:
 				try:
 					cur.execute("UPDATE diary SET breakfast = '{}' where date ='{}'".format(breakfastx, datex))
 
 				except:
 					print("diary fail 5")
 
-			if lunchx not NULL:
+			if lunchx:
 				try:
 					cur.execute("UPDATE diary SET lunch = '{}' where date ='{}'".format(lunchx, datex))
 				except:
 					print("diary fail 6")
 
-			if dinnerx not NULL:
+			if dinnerx:
 				try:
 					cur.execute("UPDATE diary SET dinner = '{}' where date ='{}'".format(dinnerx, datex))
 				except:
 					print("diary fail 7")
 
-			if snack1x not NULL:		
+			if snack1x:		
 				try:
 					cur.execute("UPDATE diary SET snack1 = '{}' where date ='{}'".format(snack1x, datex))
 				except:
 					print("diary fail 8")
-			if snack2x not NULL:
+			if snack2x:
 				try:
 					cur.execute("UPDATE diary SET snack2 = '{}' where date ='{}'".format(snack2x, datex))
 				except:
 					print("diary fail 9")
 
-			if snack3x not NULL:
+			if snack3x:
 				try:
 					cur.execute("UPDATE diary SET snack3 = '{}' where date ='{}'".format(snack3x, datex))
 				except:
 					print("diary fail 10")
 
-			if snack4x not NULL:
+			if snack4x:
 				try:
 					cur.execute("UPDATE diary SET snack4 = '{}' where date ='{}'".format(snack4x, datex))
 				except:
 					print("diary fail 11")
 
-			if snack5x not NULL:
+			if snack5x:
 				try:
 					cur.execute("UPDATE diary SET snack5 = '{}' where date ='{}'".format(snack5x, datex))
 				except:
 					print("diary fail 12")
 
-			if snack6x not NULL:
+			if snack6x:
 				try:
 					cur.execute("UPDATE diary SET snack6 = '{}' where date ='{}'".format(snack6x, datex))
 				except:
 					print("diary fail 13")
 
-			if bcalories not NULL:
+			if bcalories:
 				try:
 					cur.execute("UPDATE diary SET bcalories = '{}' where date = '{}'".format(bcalories, datex))
 				except:
 					print("diary fail 14")
 
-			if lcalories not NULL:
+			if lcalories:
 				try:
 					cur.execute("UPDATE diary SET lcalories = '{}' where date = '{}'".format(lcalories, datex))
 				except:
 					print("diary fail 15")
 
-			if dcalories not NULL:
+			if dcalories:
 				try:
 					cur.execute("UPDATE diary SET dcalories = '{}' where date = '{}'".format(dcalories, datex))
 				except:
 					print("diary fail 16")
 
-			if s1calories not NULL:
+			if s1calories:
 				try:
 					cur.execute("UPDATE diary SET s1calories = '{}' where date = '{}'".format(s1calories, datex))
 				except:
 					print("diary fail 17")
 
-			if s2calories not NULL:
+			if s2calories:
 				try:
 					cur.execute("UPDATE diary SET s2calories = '{}' where date = '{}'".format(s2calories, datex))
 				except:
 					print("diary fail 18")
 
-			if s3calories not NULL:
+			if s3calories:
 				try:
 					cur.execute("UPDATE diary SET s3calories = '{}' where date = '{}'".format(s3calories, datex))
 				except:
 					print("diary fail 19")
 
-			if s4calories not NULL:
+			if s4calories:
 				try:
 					cur.execute("UPDATE diary SET s4calories = '{}' where date = '{}'".format(s4calories, datex))
 				except:
 					print("diary fail 20")
 
-			if s5calories not NULL:
+			if s5calories:
 				try:
 					cur.execute("UPDATE diary SET s5calories = '{}' where date = '{}'".format(s5calories, datex))
 				except:
 					print("diary fail 21")
 
-			if s6calories not NULL:
+			if s6calories:
 				try:
 					cur.execute("UPDATE diary SET s6calories = '{}' where date = '{}'".format(s6calories, datex))
 				except:
