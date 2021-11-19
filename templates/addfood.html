@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Add/Delete Food {% endblock %}</h1>
-    <p> Add or delete a food to the food database.</p>
+    <h1>{% block title %} Add Food {% endblock %}</h1>
+    <p> Add a food to the food database.</p>
 
     <form action="/addfood" method = "POST">
     	<p>Food Name<input type="text" name="foodname"/></p>
@@ -11,11 +11,6 @@
     	<p>Calories per Serving<input type="text" name="calories1"/></p>
     	<p><input type="submit" value="Add Food" class="btn btn-secondary"></p>
     </form> 
-
-    <form action="/deletefood" method = "POST">
-    	<p>Food Name<input type="text" name="foodnamedel"/></p>
-    	<p><input type="submit" value="Delete Food" class="btn btn-secondary"></p>
-    </form>
 
 {% endblock %}	
 

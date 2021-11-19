@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Delete Food {% endblock %}</h1>
+    <p> Delete a food from the food database.</p>
+
+    <form action="/deletefood" method = "POST">
+    	<p>Food Name<input type="text" name="foodnamedel"/></p>
+    	<p><input type="submit" value="Delete Food" class="btn btn-secondary"></p>
+    </form>
+
+{% endblock %}	
+
