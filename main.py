@@ -252,7 +252,10 @@ def deletefood():
 				return "2"
 
 			try:
-			 	cur.execute("DELETE FROM calorielog WHERE food = (%s)", (foodnamedel))
+			 	cur.execute("DELETE FROM calorielog WHERE food =" + str(foodnamedel))
+
+			 	#cur.execute("INSERT INTO calorielog VALUES (%s, %s, %s, %s)",
+			 	#(foodname, serving1, serving2, calories1))
 			#try:
 			#	cur.execute(sql)
 			except:
