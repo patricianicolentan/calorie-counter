@@ -218,7 +218,7 @@ def addfood():
 			try:
 				conn.commit()
 			except:
-				return "4"
+				print("commit add food failed")
 
 			cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving FROM calorielog ORDER BY food")
 			calorielog = cur.fetchall()
@@ -515,7 +515,7 @@ def diary():
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
 
-		cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
+		cur.execute("SELECT date, max(weight), exercised, overate, max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
 
