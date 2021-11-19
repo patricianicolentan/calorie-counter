@@ -3,7 +3,6 @@ from flask import render_template
 from flask import request, flash, redirect, url_for
 import os
 import psycopg2
-#import mariadb
 
 app = Flask(__name__)
 
@@ -29,7 +28,6 @@ def get_db_connection():
 def index():
 
 	return render_template('index.html')
-	#return "This will be my calorie counter!"
 
 
 
@@ -234,6 +232,60 @@ def addfood():
 
 	else:
 		return render_template('addfood.html')
+
+
+
+@app.route("/deletefood", methods=["GET", "POST"])
+def deletefood():
+
+	if request.method == "POST":
+		try:
+			foodnamedel = request.form['foodnamedel']
+
+			try: 
+				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+			except:
+				return "1"
+			try:
+				cur = conn.cursor()
+			except:
+				return "2"
+
+			try:
+			 	cur.execute("DELETE FROM calorielog WHERE food = (%s)", (foodnamedel))
+			#try:
+			#	cur.execute(sql)
+			except:
+				print("Error11")
+			#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
+			#	servingsize, servinggrams, caloriesperserving, foodname))
+			try:
+				conn.commit()
+			except:
+				print("commit delete food failed")
+
+			cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving FROM calorielog ORDER BY food")
+			calorielog = cur.fetchall()
+			conn.close()
+			return render_template('food.html', calorielog = calorielog)
+
+
+		# end
+		except:
+			print("Error12")
+			return "Database Connection Error"
+			return render_template('addfood.html')
+
+	else:
+		return render_template('addfood.html')
+
+
+
+
+
+
+
+
 
 
 
