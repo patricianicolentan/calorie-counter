@@ -521,6 +521,13 @@ def adddiarylog():
 		except:
 			print("diary fail 1")
 
+		try:
+			conn.commit()
+			print("committed")
+		except:
+			print("commit diary log failed")
+
+
 		if weightx is not None:
 
 			try:
@@ -539,7 +546,7 @@ def adddiarylog():
 
 		if overatex is not None:
 			try:
-				cur.execute("UPDATE diary SET overate = '{}'' where date ='{}'".format(overatex, datex))
+				cur.execute("UPDATE diary SET overate = '{}' where date ='{}'".format(overatex, datex))
 				print("o")
 
 			except:
@@ -658,7 +665,7 @@ def adddiarylog():
 			conn.commit()
 			print("committed")
 		except:
-			print("commit diary log failed")
+			print("commit diary log 2 failed")
 
 
 			#("INSERT INTO diary (weight, exercised, overate, breakfast, lunch, dinner, snack1, snack2, snack3, snack4, snack5, snack6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (weightx, exercisedx, overatex, breakfastx, lunchx, dinnerx, snack1x, snack2x, snack3x, snack4x, snack5x, snack6x))
