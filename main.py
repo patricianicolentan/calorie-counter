@@ -88,6 +88,8 @@ def calcclear():
 		except:
 			print("Error3")
 
+		calorielog = cur.fetchall()
+
 		try:
 			cur.execute("SELECT sum(mycalories) FROM calorielog")
 			mytotalcalories = cur.fetchone()[0]
@@ -95,7 +97,7 @@ def calcclear():
 			print("Error4")
 
 
-		calorielog = cur.fetchall()
+		
 		conn.close()
 		return render_template('calccal.html', calorielog=calorielog, mytotalcalories = mytotalcalories)
 
@@ -148,6 +150,7 @@ def calccal():
 				mytotalcalories = cur.fetchone()[0]
 			except:
 				print("Error8")
+				
 
 			conn.close()
 
