@@ -53,7 +53,7 @@ def calcclear():
 		#	servingsize, servinggrams, caloriesperserving, foodname))
 
 		try:
-			cur.execute("UPDATE calorielog set myserving = NULL, mycalories = NULL where myserving is not null")
+			cur.execute("UPDATE calorielog set myserving = NULL where myserving is not null")
 		except:
 			print("Error1")
 
@@ -64,6 +64,10 @@ def calcclear():
 
 		cur.execute("SELECT food, servingsize, servinggrams, caloriesperserving, myserving, mycalories FROM calorielog ORDER BY food")
 		calorielog = cur.fetchall()
+
+
+		# set total calories var
+
 
 		try:
 			cur.execute("SELECT sum(mycalories) FROM calorielog")
@@ -115,7 +119,7 @@ def calccal():
 
 			#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 			try:
-			 	cur.execute("UPDATE calorielog set myserving = '{}', mycalories = (myserving/servinggrams*caloriesperserving) WHERE food = '{}'".format(myserving, foodname))
+			 	cur.execute("UPDATE calorielog set myserving = '{}' WHERE food = '{}'".format(myserving, foodname))
 			#try:
 			#	cur.execute(sql)
 			except:
