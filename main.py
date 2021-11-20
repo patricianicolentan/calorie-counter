@@ -354,6 +354,102 @@ def food():
 
 		return render_template('food.html', calorielog=calorielog, mytotalcalories = mytotalcalories)
 
+
+
+@app.route("/deletediarylog", methods=["GET", "POST"])
+
+def deletediarylog():
+
+	print("deletediarylog", request.method)
+
+
+	if request.method == "POST":
+		try:
+			datex = request.form['date']
+
+			if not datex:
+				return "You must input a date."
+
+			print("ok1")
+
+
+			try: 
+				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+			except:
+				return "1"
+			print("ok2")
+			try:
+				cur = conn.cursor()
+			except:
+				return "2"
+			print("ok3")
+
+			
+
+
+
+		#update diary set weight = null where date = ('2021-08-08');
+			try:	
+				# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
+			#servingsize, servinggrams, caloriesperserving, foodname))
+				cur.execute("DELETE FROM diary WHERE date = ('{}')".format(datex))
+				print("deleted")
+			except:
+				print("diary fail 1")
+
+			
+
+			try:
+				conn.commit()
+				print("committed")
+			except:
+				print("commit diary delete failed")
+
+
+				#("INSERT INTO diary (weight, exercised, overate, breakfast, lunch, dinner, snack1, snack2, snack3, snack4, snack5, snack6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (weightx, exercisedx, overatex, breakfastx, lunchx, dinnerx, snack1x, snack2x, snack3x, snack4x, snack5x, snack6x))
+			#except:
+				#print("fail")
+				#else:
+					#print("else")
+					#pass
+
+			#print("ok4")
+
+			print("Finis!")
+			try:
+				cur.execute("SELECT * FROM diary")
+			except:
+				print("diary get failed")
+			#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
+			diary = cur.fetchall()
+			conn.close()
+			return render_template('diary.html', diary = diary)
+
+
+		# end
+		except:
+			return "Database Connection Error"
+			return render_template('adddiarylog.html')
+
+	else:
+		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+		cur = conn.cursor()
+		#cur.execute(
+		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
+		#("Adobo",))
+		cur.execute("SELECT * FROM diary")
+		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
+		diary = cur.fetchall()
+		print("boo")
+
+		#conn.commit()
+		conn.close()
+
+		return render_template('deletediarylog.html', diary=diary)
+
+
+
+
 @app.route("/adddiarylog", methods=["GET", "POST"])
 
 def adddiarylog():
