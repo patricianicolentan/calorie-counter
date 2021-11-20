@@ -424,7 +424,7 @@ def deletediarylog():
 
 			print("Finis!")
 			try:
-				cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, SUM(COALESCE(bcalories,0) + COALESCE(lcalories,0) + COALESCE(dcalories,0) + COALESCE(s1calories,0) + COALESCE(s2calories,0) + COALESCE(s3calories,0) + COALESCE(s4calories,0) + COALESCE(s5calories,0) + COALESCE(s6calories,0)) AS totalcalories FROM diary")
+				cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 			except:
 				print("diary get failed")
 			#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
@@ -445,13 +445,9 @@ def deletediarylog():
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
 		try:
-			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, SUM(COALESCE(bcalories,0) + COALESCE(lcalories,0) + COALESCE(dcalories,0) + COALESCE(s1calories,0) + COALESCE(s2calories,0) + COALESCE(s3calories,0) + COALESCE(s4calories,0) + COALESCE(s5calories,0) + COALESCE(s6calories,0)) AS totalcalories FROM diary")
+			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 		except:
 			print("errorr")
-		#try:
-			#cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
-		#except:
-			#print("errorr")
 		#cur.execute("SELECT * FROM diary")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
@@ -684,14 +680,10 @@ def adddiarylog():
 
 		print("Finis!")
 		try:
-			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, SUM(COALESCE(bcalories,0) + COALESCE(lcalories,0) + COALESCE(dcalories,0) + COALESCE(s1calories,0) + COALESCE(s2calories,0) + COALESCE(s3calories,0) + COALESCE(s4calories,0) + COALESCE(s5calories,0) + COALESCE(s6calories,0)) AS totalcalories FROM diary")
+			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
+			#cur.execute("SELECT * FROM diary")
 		except:
 			print("diary get failed")
-		#try:
-			#cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
-			
-		#except:
-			#print("diary get failed")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		conn.close()
@@ -708,13 +700,9 @@ def adddiarylog():
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
 		try:
-			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, SUM(COALESCE(bcalories,0) + COALESCE(lcalories,0) + COALESCE(dcalories,0) + COALESCE(s1calories,0) + COALESCE(s2calories,0) + COALESCE(s3calories,0) + COALESCE(s4calories,0) + COALESCE(s5calories,0) + COALESCE(s6calories,0)) AS totalcalories FROM diary")
+			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 		except:
 			print("errorrrr")
-		#try:
-			#cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
-		#except:
-			#print("errorrrr")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
@@ -751,8 +739,7 @@ def diary():
 
 		print("ahh")
 		# selects all again updated
-		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, SUM(COALESCE(bcalories,0) + COALESCE(lcalories,0) + COALESCE(dcalories,0) + COALESCE(s1calories,0) + COALESCE(s2calories,0) + COALESCE(s3calories,0) + COALESCE(s4calories,0) + COALESCE(s5calories,0) + COALESCE(s6calories,0)) AS totalcalories FROM diary")
-		#cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
+		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 
 		diary = cur.fetchall()
@@ -768,8 +755,7 @@ def diary():
 		#cur.execute(
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
-		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, SUM(COALESCE(bcalories,0) + COALESCE(lcalories,0) + COALESCE(dcalories,0) + COALESCE(s1calories,0) + COALESCE(s2calories,0) + COALESCE(s3calories,0) + COALESCE(s4calories,0) + COALESCE(s5calories,0) + COALESCE(s6calories,0)) AS totalcalories FROM diary")
-		#cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
+		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 		#cur.execute("SELECT date, max(weight), exercised, overate, max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
