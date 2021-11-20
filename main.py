@@ -424,7 +424,7 @@ def deletediarylog():
 
 			print("Finis!")
 			try:
-				cur.execute("SELECT * FROM diary")
+				cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 			except:
 				print("diary get failed")
 			#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
@@ -444,7 +444,11 @@ def deletediarylog():
 		#cur.execute(
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
-		cur.execute("SELECT * FROM diary")
+		try:
+			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
+		except:
+			print("errorr")
+		#cur.execute("SELECT * FROM diary")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
@@ -495,20 +499,16 @@ def adddiarylog():
 			s6calories = request.form['s6calories']
 
 
-			print("ok1")
-
 
 			try: 
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			except:
 				return "1"
-			print("ok2")
+
 			try:
 				cur = conn.cursor()
 			except:
 				return "2"
-			print("ok3")
-
 			
 
 
@@ -602,60 +602,59 @@ def adddiarylog():
 
 			if bcalories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET bcalories = '{}' where date = '{}'".format(bcalories, datex))
+					cur.execute("UPDATE diary SET bcalories = {} where date = '{}'".format(bcalories, datex))
 				except:
 					print("diary fail 14")
 
 			if lcalories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET lcalories = '{}' where date = '{}'".format(lcalories, datex))
+					cur.execute("UPDATE diary SET lcalories = {} where date = '{}'".format(lcalories, datex))
 				except:
 					print("diary fail 15")
 
 			if dcalories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET dcalories = '{}' where date = '{}'".format(dcalories, datex))
+					cur.execute("UPDATE diary SET dcalories = {} where date = '{}'".format(dcalories, datex))
 				except:
 					print("diary fail 16")
 
 			if s1calories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET s1calories = '{}' where date = '{}'".format(s1calories, datex))
+					cur.execute("UPDATE diary SET s1calories = {} where date = '{}'".format(s1calories, datex))
 				except:
 					print("diary fail 17")
 
 			if s2calories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET s2calories = '{}' where date = '{}'".format(s2calories, datex))
+					cur.execute("UPDATE diary SET s2calories = {} where date = '{}'".format(s2calories, datex))
 				except:
 					print("diary fail 18")
 
 			if s3calories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET s3calories = '{}' where date = '{}'".format(s3calories, datex))
+					cur.execute("UPDATE diary SET s3calories = {} where date = '{}'".format(s3calories, datex))
 				except:
 					print("diary fail 19")
 
 			if s4calories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET s4calories = '{}' where date = '{}'".format(s4calories, datex))
+					cur.execute("UPDATE diary SET s4calories = {} where date = '{}'".format(s4calories, datex))
 				except:
 					print("diary fail 20")
 
 			if s5calories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET s5calories = '{}' where date = '{}'".format(s5calories, datex))
+					cur.execute("UPDATE diary SET s5calories = {} where date = '{}'".format(s5calories, datex))
 				except:
 					print("diary fail 21")
 
 			if s6calories is not NULL:
 				try:
-					cur.execute("UPDATE diary SET s6calories = '{}' where date = '{}'".format(s6calories, datex))
+					cur.execute("UPDATE diary SET s6calories = {} where date = '{}'".format(s6calories, datex))
 				except:
 					print("diary fail 22")
 
 
-			print("vars d")
 			try:
 				conn.commit()
 				print("committed")
@@ -674,7 +673,8 @@ def adddiarylog():
 
 			print("Finis!")
 			try:
-				cur.execute("SELECT * FROM diary")
+				cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
+				#cur.execute("SELECT * FROM diary")
 			except:
 				print("diary get failed")
 			#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
@@ -694,7 +694,10 @@ def adddiarylog():
 		#cur.execute(
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
-		cur.execute("SELECT * FROM diary")
+		try:
+			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
+		except:
+			print("errorrrr")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
@@ -731,7 +734,7 @@ def diary():
 
 		print("ahh")
 		# selects all again updated
-		cur.execute("SELECT * FROM diary")
+		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 
 		diary = cur.fetchall()
@@ -747,7 +750,7 @@ def diary():
 		#cur.execute(
 		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
 		#("Adobo",))
-		cur.execute("SELECT * FROM diary")
+		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, maxcalories, totalcalories FROM diary")
 		#cur.execute("SELECT date, max(weight), exercised, overate, max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		print("boo")
