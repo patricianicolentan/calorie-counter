@@ -516,8 +516,8 @@ def adddiarylog():
 		try:	
 			# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 		#servingsize, servinggrams, caloriesperserving, foodname))
-			cur.execute("INSERT INTO diary (date) VALUES ('{}')".format(datex))
-			print("date written")
+			cur.execute("INSERT INTO diary (date, bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories) VALUES ('{}')".format(datex, bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories))
+			print("date and calories written")
 		except:
 			print("diary fail 1")
 
