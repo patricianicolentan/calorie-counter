@@ -516,8 +516,8 @@ def adddiarylog():
 		try:	
 			# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 		#servingsize, servinggrams, caloriesperserving, foodname))
-			cur.execute("INSERT INTO diary (date, bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories) VALUES ('{}')".format(datex, bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories))
-			print("date and calories written")
+			cur.execute("INSERT INTO diary (date) VALUES ('{}')".format(datex))
+			print("date written")
 		except:
 			print("diary fail 1")
 
@@ -527,6 +527,11 @@ def adddiarylog():
 		except:
 			print("commit diary log failed")
 
+
+		try:
+			cur.execute("UPDATE diary set date, bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories = ('{}, {}, {}, {}, {}, {}, {}, {}, {}')".format(datex, bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories))
+		except:
+			print("diary fail 1.5")
 
 		if weightx:
 
