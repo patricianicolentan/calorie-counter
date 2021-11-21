@@ -614,55 +614,55 @@ def adddiarylog():
 			except:
 				print("diary fail 13")
 
-		if bcalories > 0:
+		if int(bcalories) > 0:
 			try:
 				cur.execute("UPDATE diary SET bcalories = ('{}') where date =('{}')".format(bcalories, datex))
 			except:
 				print("diary fail 14")
 
-		if lcalories > 0:
+		if int(lcalories) > 0:
 			try:
 				cur.execute("UPDATE diary SET lcalories = ('{}') where date =('{}')".format(lcalories, datex))
 			except:
 				print("diary fail 15")
 
-		if dcalories > 0:
+		if int(dcalories) > 0:
 			try:
 				cur.execute("UPDATE diary SET dcalories = ('{}') where date =('{}')".format(dcalories, datex))
 			except:
 				print("diary fail 16")
 
-		if s1calories > 0:
+		if int(s1calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s1calories = ('{}') where date =('{}')".format(s1calories, datex))
 			except:
 				print("diary fail 17")
 
-		if s2calories > 0:
+		if int(s2calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s2calories = ('{}') where date =('{}')".format(s2calories, datex))
 			except:
 				print("diary fail 18")
 
-		if s3calories > 0:
+		if int(s3calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s3calories = ('{}') where date =('{}')".format(s3calories, datex))
 			except:
 				print("diary fail 19")
 
-		if s4calories > 0:
+		if int(s4calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s4calories = ('{}') where date =('{}')".format(s4calories, datex))
 			except:
 				print("diary fail 20")
 
-		if s5calories > 0:
+		if int(s5calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s5calories = ('{}') where date =('{}')".format(s5calories, datex))
 			except:
 				print("diary fail 21")
 
-		if s6calories > 0:
+		if int(s6calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s6calories = ('{}') where date =('{}')".format(s6calories, datex))
 			except:
