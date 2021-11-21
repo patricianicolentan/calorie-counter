@@ -498,6 +498,12 @@ def adddiarylog():
 		s6calories = request.form['s6calories']
 
 
+		calories = [bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories]
+		for var in calories:
+			if var = 'None':
+				var = '0'
+
+
 
 		try: 
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
