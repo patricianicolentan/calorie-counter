@@ -512,6 +512,8 @@ def adddiarylog():
 			date = cur.fetchone()[0]
 			if date is not None:
 				return "That date has already been used."
+			else:
+				continue
 		except:
 			print("date used fail")
 
@@ -539,6 +541,11 @@ def adddiarylog():
 				#cur.execute("UPDATE calorielog set myserving = '{}' WHERE food = '{}'".format(myserving, foodname))
 				cur.execute("UPDATE diary SET weight = '{}' where date ='{}'".format(weightx, datex))
 				print("w")
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 2")
 
@@ -546,6 +553,11 @@ def adddiarylog():
 			try:
 				cur.execute("UPDATE diary SET exercised = '{}' where date ='{}'".format(exercisedx, datex))
 				print("e")
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 
 			except:
 				print("diary fail 3")
@@ -554,6 +566,11 @@ def adddiarylog():
 			try:
 				cur.execute("UPDATE diary SET overate = '{}' where date ='{}'".format(overatex, datex))
 				print("o")
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 
 			except:
 				print("diary fail 4")
@@ -561,108 +578,197 @@ def adddiarylog():
 		if breakfastx:
 			try:
 				cur.execute("UPDATE diary SET breakfast = '{}' where date ='{}'".format(breakfastx, datex))
-
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 5")
 
 		if lunchx:
 			try:
 				cur.execute("UPDATE diary SET lunch = '{}' where date ='{}'".format(lunchx, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 6")
 
 		if dinnerx:
 			try:
 				cur.execute("UPDATE diary SET dinner = '{}' where date ='{}'".format(dinnerx, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 7")
 
 		if snack1x:		
 			try:
 				cur.execute("UPDATE diary SET snack1 = '{}' where date ='{}'".format(snack1x, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 8")
 		if snack2x:
 			try:
 				cur.execute("UPDATE diary SET snack2 = '{}' where date ='{}'".format(snack2x, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 9")
 
 		if snack3x:
 			try:
 				cur.execute("UPDATE diary SET snack3 = '{}' where date ='{}'".format(snack3x, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 10")
 
 		if snack4x:
 			try:
 				cur.execute("UPDATE diary SET snack4 = '{}' where date ='{}'".format(snack4x, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 11")
 
 		if snack5x:
 			try:
 				cur.execute("UPDATE diary SET snack5 = '{}' where date ='{}'".format(snack5x, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 12")
 
 		if snack6x:
 			try:
 				cur.execute("UPDATE diary SET snack6 = '{}' where date ='{}'".format(snack6x, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 13")
 
 		if int(bcalories) > 0:
 			try:
 				cur.execute("UPDATE diary SET bcalories = '{}' where date ='{}'".format(bcalories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 14")
 
 		if int(lcalories) > 0:
 			try:
 				cur.execute("UPDATE diary SET lcalories = '{}' where date ='{}'".format(lcalories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 15")
 
 		if int(dcalories) > 0:
 			try:
 				cur.execute("UPDATE diary SET dcalories = '{}' where date ='{}'".format(dcalories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 16")
 
 		if int(s1calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s1calories = '{}' where date ='{}'".format(s1calories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 17")
 
 		if int(s2calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s2calories = '{}' where date ='{}'".format(s2calories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 18")
 
 		if int(s3calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s3calories = '{}' where date ='{}'".format(s3calories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 19")
 
 		if int(s4calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s4calories = '{}' where date ='{}'".format(s4calories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 20")
 
 		if int(s5calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s5calories = '{}' where date ='{}'".format(s5calories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 21")
 
 		if int(s6calories) > 0:
 			try:
 				cur.execute("UPDATE diary SET s6calories = '{}' where date ='{}'".format(s6calories, datex))
+				try:
+					conn.commit()
+					print("committed")
+				except:
+					print("commit failed")
 			except:
 				print("diary fail 22")
 
@@ -674,14 +780,6 @@ def adddiarylog():
 			print("commit diary log 2 failed")
 
 
-			#("INSERT INTO diary (weight, exercised, overate, breakfast, lunch, dinner, snack1, snack2, snack3, snack4, snack5, snack6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (weightx, exercisedx, overatex, breakfastx, lunchx, dinnerx, snack1x, snack2x, snack3x, snack4x, snack5x, snack6x))
-		#except:
-			#print("fail")
-			#else:
-				#print("else")
-				#pass
-
-		#print("ok4")
 
 		print("Finis!")
 		try:
