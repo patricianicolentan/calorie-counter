@@ -513,7 +513,7 @@ def adddiarylog():
 			if date is not None:
 				return "That date has already been used."
 			else:
-				continue
+				print("date not used")
 		except:
 			print("date used fail")
 
