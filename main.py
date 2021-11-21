@@ -487,15 +487,15 @@ def adddiarylog():
 		snack4x = request.form['snack4']
 		snack5x = request.form['snack5']
 		snack6x = request.form['snack6']
-		bcalories = request.form['bcalories']
-		lcalories = request.form['lcalories']
-		dcalories = request.form['dcalories']
-		s1calories = request.form['s1calories']
-		s2calories = request.form['s2calories']
-		s3calories = request.form['s3calories']
-		s4calories = request.form['s4calories']
-		s5calories = request.form['s5calories']
-		s6calories = request.form['s6calories']
+		bcalories = int(request.form['bcalories'])
+		lcalories = int(request.form['lcalories'])
+		dcalories = int(request.form['dcalories'])
+		s1calories = int(request.form['s1calories'])
+		s2calories = int(request.form['s2calories'])
+		s3calories = int(request.form['s3calories'])
+		s4calories = int(request.form['s4calories'])
+		s5calories = int(request.form['s5calories'])
+		s6calories = int(request.form['s6calories'])
 
 		try: 
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
