@@ -509,10 +509,17 @@ def adddiarylog():
 		except:
 			return "2"
 		
-
+		try:
+			cur.execute("SELECT * FROM diary WHERE date = ('{}')".format(datex))
+			date = cur.fetchall()
+			if date is not empty:
+				return "That date has already been used."
+		except:
+			print("date used fail")
 
 
 	#update diary set weight = null where date = ('2021-08-08');
+
 		try:	
 			# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
 		#servingsize, servinggrams, caloriesperserving, foodname))
