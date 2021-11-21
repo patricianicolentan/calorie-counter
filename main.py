@@ -500,7 +500,7 @@ def adddiarylog():
 
 		calories = [bcalories, lcalories, dcalories, s1calories, s2calories, s3calories, s4calories, s5calories, s6calories]
 		for var in calories:
-			if var = 'None':
+			if var == 'None':
 				var = '0'
 
 
