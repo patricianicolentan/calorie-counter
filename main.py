@@ -675,7 +675,7 @@ def adddiarylog():
 
 		if int(bcalories) > 0:
 			try:
-				cur.execute("UPDATE diary SET bcalories = '{}' where date ='{}'".format(bcalories, datex))
+				cur.execute("UPDATE diary SET bcalories = {} where date ='{}'".format(bcalories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -686,7 +686,7 @@ def adddiarylog():
 
 		if int(lcalories) > 0:
 			try:
-				cur.execute("UPDATE diary SET lcalories = '{}' where date ='{}'".format(lcalories, datex))
+				cur.execute("UPDATE diary SET lcalories = {} where date ='{}'".format(lcalories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -697,7 +697,7 @@ def adddiarylog():
 
 		if int(dcalories) > 0:
 			try:
-				cur.execute("UPDATE diary SET dcalories = '{}' where date ='{}'".format(dcalories, datex))
+				cur.execute("UPDATE diary SET dcalories = {} where date ='{}'".format(dcalories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -708,7 +708,7 @@ def adddiarylog():
 
 		if int(s1calories) > 0:
 			try:
-				cur.execute("UPDATE diary SET s1calories = '{}' where date ='{}'".format(s1calories, datex))
+				cur.execute("UPDATE diary SET s1calories = {} where date ='{}'".format(s1calories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -719,7 +719,7 @@ def adddiarylog():
 
 		if int(s2calories) > 0:
 			try:
-				cur.execute("UPDATE diary SET s2calories = '{}' where date ='{}'".format(s2calories, datex))
+				cur.execute("UPDATE diary SET s2calories = {} where date ='{}'".format(s2calories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -730,7 +730,7 @@ def adddiarylog():
 
 		if int(s3calories) > 0:
 			try:
-				cur.execute("UPDATE diary SET s3calories = '{}' where date ='{}'".format(s3calories, datex))
+				cur.execute("UPDATE diary SET s3calories = {} where date ='{}'".format(s3calories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -741,7 +741,7 @@ def adddiarylog():
 
 		if int(s4calories) > 0:
 			try:
-				cur.execute("UPDATE diary SET s4calories = '{}' where date ='{}'".format(s4calories, datex))
+				cur.execute("UPDATE diary SET s4calories = {} where date ='{}'".format(s4calories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -752,7 +752,7 @@ def adddiarylog():
 
 		if int(s5calories) > 0:
 			try:
-				cur.execute("UPDATE diary SET s5calories = '{}' where date ='{}'".format(s5calories, datex))
+				cur.execute("UPDATE diary SET s5calories = {} where date ='{}'".format(s5calories, datex))
 				try:
 					conn.commit()
 					print("committed")
@@ -763,7 +763,7 @@ def adddiarylog():
 
 		if int(s6calories) > 0:
 			try:
-				cur.execute("UPDATE diary SET s6calories = '{}' where date ='{}'".format(s6calories, datex))
+				cur.execute("UPDATE diary SET s6calories = {} where date ='{}'".format(s6calories, datex))
 				try:
 					conn.commit()
 					print("committed")
