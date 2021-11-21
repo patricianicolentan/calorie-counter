@@ -511,8 +511,8 @@ def adddiarylog():
 		
 		try:
 			cur.execute("SELECT * FROM diary WHERE date = ('{}')".format(datex))
-			date = cur.fetchall()
-			if date is not empty:
+			date = cur.fetchone()[0]
+			if date is not None:
 				return "That date has already been used."
 		except:
 			print("date used fail")
