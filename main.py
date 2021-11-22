@@ -817,7 +817,7 @@ def adddiarylog():
 
 @app.route("/updatediarylog", methods=["GET", "POST"])
 
-def adddiarylog():
+def updatediarylog():
 
 	print("updatediarylog", request.method)
 
