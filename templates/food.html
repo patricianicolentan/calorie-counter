@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="w3-center">
     <h1>{% block title %} Food {% endblock %}</h1>
-    <p> This page will show the food database.</p>
+    <p> This database lists food items, their serving sizes (with the option in grams), and their calorie counts.</p>
+</div>
+    <div class="w3-container">
+    <div class="w3-center">
+    <a href ="/addfood" method="POST" class="w3-button w3-theme">Add Food</a>
+    <a href ="/deletefood" method="POST" class="w3-button w3-theme">Delete Food</a>
+    <a href ="/calccal" method="POST" class="w3-button w3-theme">Calculate Calories</a>
+</div></div>
 
-    <a href ="/addfood" method="POST" class="btn btn-outline-secondary">Add Food</a>
-    <a href ="/deletefood" method="POST" class="btn btn-outline-secondary">Delete Food</a>
-    <a href ="/calccal" method="POST" class="btn btn-outline-secondary">Calculate Calories</a>
     <p></p><p></p>
 
-    <table border = 1>
+<div class="w3-responsive w3-card-4">
+<table class="w3-table w3-striped w3-bordered">
     	<thead>
     		<th>Food</th>
     		<th>Serving Size</th>
     		<th>Serving Size in Grams</th>
     		<th>Calories per Serving</th>
     	</thead>
+        <tbody>
     	{% for row in calorielog %}
     <tr>
     	<td>{{ row[0]}}</td>
@@ -24,8 +31,10 @@
     	<td>{{ row[3]}}</td>
     </tr>
         {% endfor %}
-    </table>
+        </tbody>
 
+    </table>    
+</div>
 
 
 

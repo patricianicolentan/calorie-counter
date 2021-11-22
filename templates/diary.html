@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <div class="w3-center">
     <h1>{% block title %} Diary {% endblock %}</h1>
     <p> View the diary database.</p>
+</div>
+    
+    <div class="w3-container">
+    <div class="w3-center">
+    <a href ="/adddiarylog" method="POST" class="w3-button w3-theme">Add Diary Log</a>
+    <a href ="/updatediarylog" method="POST" class="w3-button w3-theme">Update Diary Log</a>
+    <a href ="/deletediarylog" method="POST" class="w3-button w3-theme">Delete Diary Log</a>
+</div></div>
 
-    <a href ="/adddiarylog" method="POST" class="btn btn-outline-secondary">Add Diary Log</a>
-    <a href ="/updatediarylog" method="POST" class="btn btn-outline-secondary">Update Diary Log</a>
-    <a href ="/deletediarylog" method="POST" class="btn btn-outline-secondary">Delete Diary Log</a>
     <p></p><p></p>
 
-    <table border = 1>
+   <div class="w3-responsive w3-card-4">
+<table class="w3-table w3-striped w3-bordered">
     	<thead>
     		<th>Date</th>
     		<th>Weight</th>
@@ -36,6 +44,7 @@
             <th>Total Calories</th>
 
     	</thead>
+        <tbody>
     	{% for row in diary %}
     <tr>
     	<td>{{ row[0]}}</td>
@@ -64,8 +73,9 @@
         <td>{{ row[23]}}</td>  	
     </tr>
         {% endfor %}
+        </tbody>
     </table>
-
+</div>
 
 
 
