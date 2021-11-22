@@ -28,8 +28,34 @@
 
     <div class="w3-padding-32">
       <a href ="{{ url_for('index')}}" class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">Home</a>
-      <a href ="{{ url_for('food')}}" class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">Food</a>
-      <a href ="{{ url_for('diary')}}" class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">Diary</a>
+
+
+
+      
+
+<div class="w3-dropdown-hover">
+    <a class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">
+      Food <i class="fa fa-caret-down"></i>
+    </a>
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+      <a href="{{ url_for('food')}}" class="w3-bar-item w3-button">Database</a>
+      <a href="/addfood" class="w3-bar-item w3-button">Add</a>
+      <a href="/deletefood" class="w3-bar-item w3-button">Delete</a>
+      <a href="/calccal" class="w3-bar-item w3-button">Calories</a>
+    </div>
+  </div>
+
+  <div class="w3-dropdown-hover">
+    <a class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">
+      Diary <i class="fa fa-caret-down"></i>
+    </a>
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+      <a href="{{ url_for('diary')}}" class="w3-bar-item w3-button">Database</a>
+      <a href="/adddiarylog" class="w3-bar-item w3-button">Add</a>
+      <a href="/updatediarylog" class="w3-bar-item w3-button">Update</a>
+      <a href="/deletediarylog" class="w3-bar-item w3-button">Delete</a>
+    </div>
+  </div>
 
 
     </div>
