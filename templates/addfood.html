@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="w3-container">
+
+<div class="w3-center">
     <h1>{% block title %} Add Food {% endblock %}</h1>
-    <p> Add a food to the food database.</p>
+    <p> Add a food and its serving information to the food database. To use a serving size without weight (e.g. 1 pack) simply enter 1 instead of a weight.</p>
+</div></div>
 
+<div class="w3-container">
+<div class="w3-center">
     <form action="/addfood" method = "POST">
-    	<p>Food Name<input type="text" name="foodname"/></p>
-    	<p>Serving Size<input type="text" name="serving1"/></p>
-    	<p>Serving in Grams<input type="text" name="serving2"/></p>
-    	<p>Calories per Serving<input type="text" name="calories1"/></p>
-    	<p><input type="submit" value="Add Food" class="btn btn-secondary"></p>
+    	<p>Food Name<input type="text" name="foodname" required/></p>
+    	<p>Serving Size<input type="text" name="serving1" required/></p>
+    	<p>Serving in Grams<input type="text" name="serving2" default="1" required/></p>
+    	<p>Calories per Serving<input type="text" name="calories1" required/></p>
+    	<input type="submit" value="Add Food" class="w3-button w3-theme"></a>
     </form> 
-
+</div></div>
+<br>
 {% endblock %}	
 

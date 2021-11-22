@@ -17,14 +17,16 @@
 <div class="w3-responsive w3-card-4">
 <table class="w3-table w3-striped w3-bordered">
     	<thead>
+            <tr class="w3-theme">
     		<th>Food</th>
     		<th>Serving Size</th>
     		<th>Serving Size in Grams</th>
     		<th>Calories per Serving</th>
+        </tr>
     	</thead>
         <tbody>
     	{% for row in calorielog %}
-    <tr>
+    <tr class="w3-white"> 
     	<td>{{ row[0]}}</td>
     	<td>{{ row[1]}}</td>
     	<td>{{ row[2]}}</td>
@@ -38,7 +40,7 @@
 
 
 
-
+<br>
 
 {% endblock %}	
 

@@ -1,24 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="w3-center">
     <h1>{% block title %} Calculate Calories {% endblock %}</h1>
-    <p> This page will calculate the calories for a given food serving.</p>
+    <p> Calculate the calories for a given food serving.</p>
+</div>
+    <div class="w3-container">
+    <div class="w3-center">
 
-    <form action="/calccal" method = "POST">
-    	<p>Food Name<input type="text" name="foodname"/></p>
+        <form action="/calccal" method = "POST">
+        <p>Food Name<input type="text" name="foodname"/></p>
         <p>My Serving<input type="text" name="myserving"/></p>
-    	<p><input type="submit" value="Calculate Calories" class="btn btn-secondary"></p>
+        <input type="submit" class="w3-button w3-theme" value="Calculate Calories"></a>
     </form> 
+        <form action="/calcclear" method = "POST">
+        <input type="submit" value="Clear Calculations" class="w3-button w3-theme">
+    </form>
 
-    <form action="/calcclear" method = "POST">
-		<p><input type="submit" value="Clear Calculations" class="btn btn-secondary"></p>
-	</form>
+
+</div></div>
+
+
+
+    <div class="w3-container">
+    <div class="w3-center">
 
 	<p>Total Calories: {{ mytotalcalories }}</p>
 
+</div></div>
 
-    <table border = 1>
+
+    <div class="w3-responsive w3-card-4">
+    <table class="w3-table w3-striped w3-bordered">
     	<thead>
+            <tr class="w3-theme">
     		<th>Food</th>
     		<th>Serving Size</th>
     		<th>Serving Size in Grams</th>
@@ -26,8 +41,9 @@
             <th>My Serving</th>
             <th>Calories</th>
     	</thead>
+        <tbody>
     	{% for row in calorielog %}
-    <tr>
+    <tr class="w3-white"> 
     	<td>{{ row[0]}}</td>
     	<td>{{ row[1]}}</td>
     	<td>{{ row[2]}}</td>
@@ -36,8 +52,9 @@
         <td>{{ row[5]}}</td>
     </tr>
         {% endfor %}
+        </tbody>
     </table>
 
-
+<br>
 {% endblock %}	
 
