@@ -27,9 +27,11 @@
 
 
     <div class="w3-padding-32">
-      <button class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey" a href="{{ url_for('index')}}" style="font-weight:900;">Home</button>
-      <button class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey" a href="{{ url_for('food')}}" style="font-weight:900;">Food</button>
-      <button class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey" a href="{{ url_for('diary')}}" style="font-weight:900;">Diary</button>
+      <a href ="{{ url_for('index')}}" class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">Home</a>
+      <a href ="{{ url_for('food')}}" class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">Food</a>
+      <a href ="{{ url_for('diary')}}" class="w3-btn w3-medium w3-dark-grey w3-hover-light-grey">Diary</a>
+
+
     </div>
 
   </div>
