@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Update Diary Log {% endblock %}</h1>
+    <p> Update your daily activities here!</p>
+
+    <form action="/updatediarylog" method = "POST">
+        <p>Date<input type="text" name="date"/>
+        Weight<input type="text" name="weight"/>
+        Exercised?<input type="text" name="exercised"/>
+        Overate?<input type="text" name="overate"/>
+        <p>Breakfast<input type="text" name="breakfast"/>
+        Calories<input type="text" name="bcalories" value="0"/>
+        Lunch<input type="text" name="lunch"/>
+        Calories<input type="text" name="lcalories" value="0"/>
+        <p>Dinner<input type="text" name="dinner"/>
+        Calories<input type="text" name="dcalories" value="0"/>
+        Snack 1<input type="text" name="snack1"/>
+        Calories<input type="text" name="s1calories" value="0"/>
+        <p>Snack 2<input type="text" name="snack2"/>
+        Calories<input type="text" name="s2calories" value="0"/>
+        Snack 3<input type="text" name="snack3"/>
+        Calories<input type="text" name="s3calories" value="0"/>
+        <p>Snack 4<input type="text" name="snack4"/>
+        Calories<input type="text" name="s4calories" value="0"/>
+        Snack 5<input type="text" name="snack5"/>
+        Calories<input type="text" name="s5calories" value="0"/>
+        <p>Snack 6<input type="text" name="snack6"/>
+        Calories<input type="text" name="s6calories" value="0"/>
+        <p><input type="submit" value="Update Diary Log" class="btn btn-secondary"></p>
+    </form> 
+    <!--
+    <a href ="/adddiarylog" method="POST" class="btn btn-outline-secondary">Add</a>
+-->
+    <p></p><p></p>
+
+    <table border = 1>
+    	<thead>
+    		<th>Date</th>
+    		<th>Weight</th>
+    		<th>Exercised?</th>
+    		<th>Overate?</th>
+    		<th>Breakfast</th>
+    		<th>Calories</th>
+    		<th>Lunch</th>
+    		<th>Calories</th>
+    		<th>Dinner</th>
+    		<th>Calories</th>
+    		<th>Snack 1</th>
+    		<th>Calories</th>
+    		<th>Snack 2</th>
+    		<th>Calories</th>
+    		<th>Snack 3</th>
+    		<th>Calories</th>
+    		<th>Snack 4</th>
+    		<th>Calories</th>
+    		<th>Snack 5</th>
+    		<th>Calories</th>
+    		<th>Snack 6</th>
+    		<th>Calories</th>
+            <th>Total Calories</th>
+
+    	</thead>
+    	{% for row in diary %}
+    <tr>
+    	<td>{{ row[0]}}</td>
+    	<td>{{ row[1]}}</td>
+    	<td>{{ row[2]}}</td>
+    	<td>{{ row[3]}}</td>    	
+    	<td>{{ row[4]}}</td>
+    	<td>{{ row[5]}}</td>
+    	<td>{{ row[6]}}</td>
+    	<td>{{ row[7]}}</td>    	
+    	<td>{{ row[8]}}</td>
+    	<td>{{ row[9]}}</td>
+    	<td>{{ row[10]}}</td>
+    	<td>{{ row[11]}}</td>    	
+    	<td>{{ row[12]}}</td>
+    	<td>{{ row[13]}}</td>
+    	<td>{{ row[14]}}</td>
+    	<td>{{ row[15]}}</td>    	
+    	<td>{{ row[16]}}</td>
+    	<td>{{ row[17]}}</td>
+    	<td>{{ row[18]}}</td>
+    	<td>{{ row[19]}}</td>
+    	<td>{{ row[20]}}</td>    	
+    	<td>{{ row[21]}}</td>    	
+    	<td>{{ row[22]}}</td>    	
+        <td>{{ row[23s]}}</td>    
+    	<!--<td><a href="/addfood/{{row.foodname}}" class="btn btn-outline-secondary btn-sm">Update</a> </td>-->
+    </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+
+{% endblock %}	
+

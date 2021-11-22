@@ -819,9 +819,6 @@ def adddiarylog():
 
 def updatediarylog():
 
-	print("updatediarylog", request.method)
-
-
 	if request.method == "POST":
 		datex = request.form['date']
 
