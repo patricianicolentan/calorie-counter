@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="w3-container">
+<div class = "w3-center">
     <h1>{% block title %} Add Diary Log {% endblock %}</h1>
-    <p> Record your daily activities here!</p>
-
+    <p> Record your daily activities by calendar date. This is for inserting new dates. To update an existing log, go to 'Update Diary Log'.</p>
+</div></div>
+<div class="w3-container">
+    <div class="w3-center">
     <form action="/adddiarylog" method = "POST">
         <p>Date<input type="text" name="date"/>
         Weight<input type="text" name="weight"/>
@@ -27,15 +31,17 @@
         Calories<input type="text" name="s5calories" value="0"/>
         <p>Snack 6<input type="text" name="snack6"/>
         Calories<input type="text" name="s6calories" value="0"/>
-        <p><input type="submit" value="Add Diary Log" class="btn btn-secondary"></p>
-    </form> 
+        <p><input type="submit" value="Add Diary Log" class="w3-button w3-theme"></p>
+    </form> </div></div>
     <!--
     <a href ="/adddiarylog" method="POST" class="btn btn-outline-secondary">Add</a>
 -->
     <p></p><p></p>
 
-    <table border = 1>
+    <div class="w3-responsive w3-card-4">
+<table class="w3-table w3-striped w3-bordered">
     	<thead>
+            <tr class="w3-theme">
     		<th>Date</th>
     		<th>Weight</th>
     		<th>Exercised?</th>
@@ -58,10 +64,12 @@
     		<th>Calories</th>
     		<th>Snack 6</th>
     		<th>Calories</th>
+            <th>Total Calories</th>
 
     	</thead>
+        <tbody>
     	{% for row in diary %}
-    <tr>
+    <tr class="w3-white">
     	<td>{{ row[0]}}</td>
     	<td>{{ row[1]}}</td>
     	<td>{{ row[2]}}</td>
@@ -85,10 +93,13 @@
     	<td>{{ row[20]}}</td>    	
     	<td>{{ row[21]}}</td>    	
     	<td>{{ row[22]}}</td>    	
+        <td>{{ row[23]}}</td>    
     	<!--<td><a href="/addfood/{{row.foodname}}" class="btn btn-outline-secondary btn-sm">Update</a> </td>-->
     </tr>
         {% endfor %}
-    </table>
+        </tbody>
+    </table></div>
+    <br>
 
 
 

@@ -1,6 +1,59 @@
 {% extends 'base.html' %}
+<h1>{% block title %} Index {% endblock %}</h1>
 
 {% block content %}
-    <h1>{% block title %} Calorie Counter {% endblock %}</h1>
-    <p> Welcome to the Calorie Counter web application! </p>
-{% endblock %}	
+
+
+
+<div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:300px">
+  <h3>Food Database</h3><br>
+  <i class="fa fa-calculator w3-margin-bottom w3-text-theme" style="font-size:80px"></i>
+  <p>Lists serving size and calorie count</p>
+  <p>Calculate the calories for your serving</p>
+  <p>Supports servings in grams</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:300px">
+  <h3>Diary Database</h3><br>
+  <i class="fa fa-book w3-margin-bottom w3-text-theme" style="font-size:80px"></i>
+  <p>Record your health daily</p>
+  <p>Keep meal and calorie logs</p>
+  <p>Add in new dates or edit old ones</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:300px">
+  <h3>Customizability</h3><br>
+  <i class="fa fa-edit w3-margin-bottom w3-text-theme" style="font-size:80px"></i>
+  <p>Add in new types of food</p>
+  <p>Add new days to your journal</p>
+  <p>Delete any previous entry</p>
+  </div>
+</div>
+
+
+</div>
+</div>
+
+<div class="w3-container">
+<hr>
+<div class = "w3-center">
+<h3>Technicalities</h3>
+</div>
+<div class="left">
+  
+  <p>This project is a web app using Flask, PostgreSQL, and Gunicorn, with web hosting provided by Heroku.
+  The front-end code uses HTML and CSS. Underneath the hood, the back-end is written in Python, using the Flask API for web application functions.
+  The food and diary databases are hosted on Heroku via the PostgreSQL relational database management system.
+  The web app's Python processes run on Gunicorn, a Web Server Gateway Interface (WSGI) HTTP server. Version control was organized through Git.
+  Code from the latest version is available on <a href="https://github.com/patricianicolentan/calorie-counter">Github</a>.</p>
+</div>
+<br><br>
+<!--end content-->
+
+{% endblock %}  
