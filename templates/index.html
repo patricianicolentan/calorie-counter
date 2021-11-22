@@ -1,6 +1,95 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<title>Index</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="~/lib/Font-Awesome/css/regular.min.css">
+<link rel="stylesheet" href="~/lib/Font-Awesome/css/solid.min.css">
 
-{% block content %}
-    <h1>{% block title %} Calorie Counter {% endblock %}</h1>
-    <p> Welcome to the Calorie Counter web application! </p>
-{% endblock %}	
+<body>
+
+<!-- Navigation -->
+
+<div class="w3-bar w3-theme">
+  <a href="{{ url_for('index')}}" class="w3-bar-item w3-button">Home</a>
+  <a href="{{ url_for('food')}}" class="w3-bar-item w3-button">Food</a>
+  <a href="{{ url_for('diary')}}" class="w3-bar-item w3-button">Diary</a>
+  
+</div>
+
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <div class="w3-center">
+  <h1 class="w3-xxxlarge w3-animate-bottom">Calorie Counter</h1>
+  <h4>a Patricia Nicole Tan project</h4>
+    </div>
+</header>
+
+<div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:330px">
+  <h3>Food Database</h3><br>
+  <i class="fa fa-calculator w3-margin-bottom w3-text-theme" style="font-size:80px"></i>
+  <p>Lists serving size and calorie count</p>
+  <p>Calculate the calories for your serving</p>
+  <p>Supports servings in grams</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:330px">
+  <h3>Diary Database</h3><br>
+  <i class="fa fa-book w3-margin-bottom w3-text-theme" style="font-size:80px"></i>
+  <p>Record your health daily</p>
+  <p>Keep meal and calorie logs</p>
+  <p>Add in new dates or edit old ones</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:330px">
+  <h3>Customizability</h3><br>
+  <i class="fa fa-edit w3-margin-bottom w3-text-theme" style="font-size:80px"></i>
+  <p>Add in new types of food</p>
+  <p>Add new days to your journal</p>
+  <p>Delete any previous entry</p>
+  </div>
+</div>
+
+
+</div>
+</div>
+
+<div class="w3-container">
+<hr>
+<div class = "w3-center">
+<h3>Technicalities</h3>
+</div>
+<div class="left">
+  
+  <p>This project is a web app using Flask, PostgreSQL, and Gunicorn, with web hosting provided by Heroku.
+  The front-end code uses HTML and CSS. Underneath the hood, the back-end is written in Python, using the Flask API for web application functions.
+  The food and diary databases are hosted on Heroku via the PostgreSQL relational database management system.
+  The web app's Python processes run on Gunicorn, a Web Server Gateway Interface (WSGI) HTTP server. Version control was organized through Git.
+  Code from the latest version is available on <a href="https://github.com/patricianicolentan/calorie-counter">Github</a>.</p>
+</div>
+<br>
+<!-- Footer -->
+<footer class="w3-container w3-theme-dark w3-padding-16">
+  <div class="w3-left">
+  Website and Application © Patricia Tan 2021
+  </div>
+  <div class="w3-right">
+  Template by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+</div>
+</footer>
+
+
+
+</body>
+</html>
