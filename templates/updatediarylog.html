@@ -1,34 +1,11 @@
-<!DOCTYPE html>
-<html>
-<title>Update Diary Log</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="~/lib/Font-Awesome/css/regular.min.css">
-<link rel="stylesheet" href="~/lib/Font-Awesome/css/solid.min.css">
+{% extends 'base.html' %}
+<h1>{% block title %} Update Diary Log {% endblock %}</h1>
 
-<body>
-
-<!-- Navigation -->
-
-<div class="w3-bar w3-theme">
-  <a href="{{ url_for('index')}}" class="w3-bar-item w3-button">Home</a>
-  <a href="{{ url_for('food')}}" class="w3-bar-item w3-button">Food</a>
-  <a href="{{ url_for('diary')}}" class="w3-bar-item w3-button">Diary</a>
-  
-</div>
+{% block content %}
 
 
-<!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <div class="w3-center">
-  <h1 class="w3-xxxlarge w3-animate-bottom">Calorie Counter</h1>
-  <h4>a Patricia Nicole Tan project</h4>
-    </div>
-</header>
+
+
 
 
 <!--Content-->
@@ -70,14 +47,12 @@
     </form> 
 </div>
 </div>
- <!--
-    <a href ="/adddiarylog" method="POST" class="btn btn-outline-secondary">Add</a>
--->
+
     <br><br>
 
 
 <div class="w3-responsive w3-card-4">
-<table class="w3-table w3-striped w3-bordered" style="font-size:9.5px;">
+<table class="w3-table w3-striped w3-bordered">
 <thead>
 <th>Date</th>
 <th>Weight</th>
@@ -142,35 +117,4 @@
         
 <!--end content-->
 
-
-<br>
-<!-- Footer -->
-<footer class="w3-container w3-theme-dark w3-padding-16">
-  <div class="w3-left">
-  Website and Application © Patricia Tan 2021
-  </div>
-  <div class="w3-right">
-  Template by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-</div>
-</footer>
-
-
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-    
-   
-
-
+{% endblock %}  
