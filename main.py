@@ -18,7 +18,7 @@ def get_db_connection():
 	    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 	    return conn
 	except:
-	    print("ERRORRR")
+	    print("ERROR")
 	    sys.exit(1)
 
 
@@ -39,18 +39,10 @@ def calcclear():
 			conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		except:
 			return "1"
-		print("heh/")
 		try:
 			cur = conn.cursor()
 		except:
 			return "2"
-		print("ono")
-
-		#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
-	
-
-		#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-		#	servingsize, servinggrams, caloriesperserving, foodname))
 
 		try:
 			cur.execute("UPDATE calorielog set myserving = NULL where myserving is not null")
@@ -112,21 +104,15 @@ def calccal():
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			except:
 				return "1"
-			print("heh/")
 			try:
 				cur = conn.cursor()
 			except:
 				return "2"
-			print("ono")
 
-			#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 			try:
 			 	cur.execute("UPDATE calorielog set myserving = '{}' WHERE food = '{}'".format(myserving, foodname))
-			#try:
-			#	cur.execute(sql)
 			except:
 				print("Error5")
-			print("here")
 
 		
 
@@ -166,9 +152,6 @@ def calccal():
 	else:
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
 
 		cur.execute("SELECT * FROM calorielog ORDER BY food")
 		calorielog = cur.fetchall()
@@ -176,11 +159,9 @@ def calccal():
 		try:
 			cur.execute("SELECT sum(mycalories) FROM calorielog")
 			mytotalcalories = cur.fetchone()[0]
-			print("hihi")
 		except:
 			print("Error10")
 
-		#conn.commit()
 		conn.close()
 		return render_template('calccal.html', calorielog = calorielog, mytotalcalories = mytotalcalories)
 
@@ -205,21 +186,12 @@ def addfood():
 				cur = conn.cursor()
 			except:
 				return "2"
-
-			#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
-			#cur.execute("INSERT INTO calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (foodname, serving1, serving2, calories1)")
-			#cur.execute('INSERT INTO emp VALUES(%s, %s, %s, %s)',
-                                    #(id, name, salary, dept))
 			try:
 			 	cur.execute("INSERT INTO calorielog VALUES (%s, %s, %s, %s)",
 			 	(foodname, serving1, serving2, calories1))
 			
-			#try:
-			#	cur.execute(sql)
 			except:
 				print("Error11")
-			#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-			#	servingsize, servinggrams, caloriesperserving, foodname))
 			try:
 				conn.commit()
 			except:
@@ -260,16 +232,8 @@ def deletefood():
 
 			try:
 			 	cur.execute("DELETE FROM calorielog WHERE food = '{}'".format(foodnamedel))
-			 	#cur.execute("INSERT INTO diary (date) VALUES ('{}')".format(datex))
-
-			 	#cur.execute("INSERT INTO calorielog VALUES (%s, %s, %s, %s)",
-			 	#(foodname, serving1, serving2, calories1))
-			#try:
-			#	cur.execute(sql)
 			except:
 				print("Error11")
-			#cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-			#	servingsize, servinggrams, caloriesperserving, foodname))
 			try:
 				conn.commit()
 			except:
@@ -312,7 +276,6 @@ def food():
 
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute("INSERT into calorielog (food, servingsize, servinggrams, caloriesperserving) VALUES (?, ?, ?, ?)", (foodname, serving1, serving2, calories1))
 
 		try:
 			cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
@@ -336,9 +299,7 @@ def food():
 	else:		
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
+		
 		try:
 			cur.execute("SELECT * FROM calorielog ORDER BY food")
 		except:
@@ -352,9 +313,7 @@ def food():
 		except:
 			print("Error16")
 
-		
 
-		#conn.commit()
 		conn.close()
 
 
@@ -377,32 +336,27 @@ def deletediarylog():
 			if not datex:
 				return "You must input a date."
 
-			print("ok1")
-
 
 			try: 
 				conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 			except:
 				return "1"
-			print("ok2")
+			
+			
 			try:
 				cur = conn.cursor()
 			except:
 				return "2"
-			print("ok3")
 
 			
 
 
 
-		#update diary set weight = null where date = ('2021-08-08');
 			try:	
-				# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-			#servingsize, servinggrams, caloriesperserving, foodname))
 				cur.execute("DELETE FROM diary WHERE date = ('{}')".format(datex))
 				print("deleted")
 			except:
-				print("diary fail 1")
+				print("diary error 1")
 
 			
 
@@ -413,21 +367,11 @@ def deletediarylog():
 				print("commit diary delete failed")
 
 
-				#("INSERT INTO diary (weight, exercised, overate, breakfast, lunch, dinner, snack1, snack2, snack3, snack4, snack5, snack6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (weightx, exercisedx, overatex, breakfastx, lunchx, dinnerx, snack1x, snack2x, snack3x, snack4x, snack5x, snack6x))
-			#except:
-				#print("fail")
-				#else:
-					#print("else")
-					#pass
-
-			#print("ok4")
-
-			print("Finis!")
 			try:
 				cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
 			except:
 				print("diary get failed")
-			#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
+				
 			diary = cur.fetchall()
 			conn.close()
 			return render_template('diary.html', diary = diary)
@@ -441,19 +385,15 @@ def deletediarylog():
 	else:
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
+		
 		try:
 			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
 		except:
 			print("errorr")
-		#cur.execute("SELECT * FROM diary")
-		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
-		diary = cur.fetchall()
-		print("boo")
 
-		#conn.commit()
+			
+		diary = cur.fetchall()
+
 		conn.close()
 
 		return render_template('deletediarylog.html', diary=diary)
@@ -515,18 +455,16 @@ def adddiarylog():
 			else:
 				print("date not used")
 		except:
-			print("date used fail")
+			print("date used error")
 
 
-	#update diary set weight = null where date = ('2021-08-08');
 
 		try:	
-			# 		cur.execute("UPDATE calorielog set servingsize, servinggrams, caloriesperserving = '{}, {}, {}' where foodname = '{}'".format(
-		#servingsize, servinggrams, caloriesperserving, foodname))
+
 			cur.execute("INSERT INTO diary (date) VALUES ('{}')".format(datex))
 			print("date written")
 		except:
-			print("diary fail 1")
+			print("diary error 1")
 
 		try:
 			conn.commit()
@@ -538,7 +476,6 @@ def adddiarylog():
 		if weightx:
 
 			try:
-				#cur.execute("UPDATE calorielog set myserving = '{}' WHERE food = '{}'".format(myserving, foodname))
 				cur.execute("UPDATE diary SET weight = '{}' where date ='{}'".format(weightx, datex))
 				print("w")
 				try:
@@ -547,12 +484,11 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 2")
+				print("diary error 2")
 
 		if exercisedx:
 			try:
 				cur.execute("UPDATE diary SET exercised = '{}' where date ='{}'".format(exercisedx, datex))
-				print("e")
 				try:
 					conn.commit()
 					print("committed")
@@ -560,12 +496,11 @@ def adddiarylog():
 					print("commit failed")
 
 			except:
-				print("diary fail 3")
+				print("diary error 3")
 
 		if overatex:
 			try:
 				cur.execute("UPDATE diary SET overate = '{}' where date ='{}'".format(overatex, datex))
-				print("o")
 				try:
 					conn.commit()
 					print("committed")
@@ -573,7 +508,7 @@ def adddiarylog():
 					print("commit failed")
 
 			except:
-				print("diary fail 4")
+				print("diary error 4")
 
 		if breakfastx:
 			try:
@@ -584,7 +519,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 5")
+				print("diary error 5")
 
 		if lunchx:
 			try:
@@ -595,7 +530,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 6")
+				print("diary error 6")
 
 		if dinnerx:
 			try:
@@ -606,7 +541,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 7")
+				print("diary error 7")
 
 		if snack1x:		
 			try:
@@ -617,7 +552,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 8")
+				print("diary error 8")
 		if snack2x:
 			try:
 				cur.execute("UPDATE diary SET snack2 = '{}' where date ='{}'".format(snack2x, datex))
@@ -627,7 +562,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 9")
+				print("diary error 9")
 
 		if snack3x:
 			try:
@@ -638,7 +573,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 10")
+				print("diary error 10")
 
 		if snack4x:
 			try:
@@ -649,7 +584,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 11")
+				print("diary error 11")
 
 		if snack5x:
 			try:
@@ -660,7 +595,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 12")
+				print("diary error 12")
 
 		if snack6x:
 			try:
@@ -671,7 +606,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 13")
+				print("diary error 13")
 
 		if int(bcalories) > 0:
 			try:
@@ -682,7 +617,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 14")
+				print("diary error 14")
 
 		if int(lcalories) > 0:
 			try:
@@ -693,7 +628,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 15")
+				print("diary error 15")
 
 		if int(dcalories) > 0:
 			try:
@@ -704,7 +639,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 16")
+				print("diary error 16")
 
 		if int(s1calories) > 0:
 			try:
@@ -715,7 +650,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 17")
+				print("diary error 17")
 
 		if int(s2calories) > 0:
 			try:
@@ -726,7 +661,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 18")
+				print("diary error 18")
 
 		if int(s3calories) > 0:
 			try:
@@ -737,7 +672,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 19")
+				print("diary error 19")
 
 		if int(s4calories) > 0:
 			try:
@@ -748,7 +683,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 20")
+				print("diary error 20")
 
 		if int(s5calories) > 0:
 			try:
@@ -759,7 +694,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 21")
+				print("diary error 21")
 
 		if int(s6calories) > 0:
 			try:
@@ -770,7 +705,7 @@ def adddiarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 22")
+				print("diary error 22")
 
 
 		try:
@@ -779,15 +714,10 @@ def adddiarylog():
 		except:
 			print("commit diary log 2 failed")
 
-
-
-		print("Finis!")
 		try:
 			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
-			#cur.execute("SELECT * FROM diary")
 		except:
 			print("diary get failed")
-		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		conn.close()
 		return render_template('diary.html', diary = diary)
@@ -799,18 +729,12 @@ def adddiarylog():
 	else:
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
 		try:
 			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
 		except:
-			print("errorrrr")
-		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
+			print("error")
 		diary = cur.fetchall()
-		print("boo")
 
-		#conn.commit()
 		conn.close()
 
 		return render_template('adddiarylog.html', diary=diary)
@@ -872,16 +796,14 @@ def updatediarylog():
 		if weightx:
 
 			try:
-				#cur.execute("UPDATE calorielog set myserving = '{}' WHERE food = '{}'".format(myserving, foodname))
 				cur.execute("UPDATE diary SET weight = '{}' where date ='{}'".format(weightx, datex))
-				print("w")
 				try:
 					conn.commit()
 					print("committed")
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 2")
+				print("diary error 2")
 
 		if exercisedx:
 			try:
@@ -894,7 +816,7 @@ def updatediarylog():
 					print("commit failed")
 
 			except:
-				print("diary fail 3")
+				print("diary error 3")
 
 		if overatex:
 			try:
@@ -907,7 +829,7 @@ def updatediarylog():
 					print("commit failed")
 
 			except:
-				print("diary fail 4")
+				print("diary error 4")
 
 		if breakfastx:
 			try:
@@ -918,7 +840,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 5")
+				print("diary error 5")
 
 		if lunchx:
 			try:
@@ -929,7 +851,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 6")
+				print("diary error 6")
 
 		if dinnerx:
 			try:
@@ -940,7 +862,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 7")
+				print("diary error 7")
 
 		if snack1x:		
 			try:
@@ -951,7 +873,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 8")
+				print("diary error 8")
 		if snack2x:
 			try:
 				cur.execute("UPDATE diary SET snack2 = '{}' where date ='{}'".format(snack2x, datex))
@@ -961,7 +883,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 9")
+				print("diary error 9")
 
 		if snack3x:
 			try:
@@ -972,7 +894,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 10")
+				print("diary error 10")
 
 		if snack4x:
 			try:
@@ -983,7 +905,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 11")
+				print("diary error 11")
 
 		if snack5x:
 			try:
@@ -994,7 +916,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 12")
+				print("diary error 12")
 
 		if snack6x:
 			try:
@@ -1005,7 +927,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 13")
+				print("diary error 13")
 
 		if int(bcalories) > 0:
 			try:
@@ -1016,7 +938,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 14")
+				print("diary error 14")
 
 		if int(lcalories) > 0:
 			try:
@@ -1027,7 +949,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 15")
+				print("diary error 15")
 
 		if int(dcalories) > 0:
 			try:
@@ -1038,7 +960,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 16")
+				print("diary error 16")
 
 		if int(s1calories) > 0:
 			try:
@@ -1049,7 +971,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 17")
+				print("diary error 17")
 
 		if int(s2calories) > 0:
 			try:
@@ -1060,7 +982,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 18")
+				print("diary error 18")
 
 		if int(s3calories) > 0:
 			try:
@@ -1071,7 +993,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 19")
+				print("diary error 19")
 
 		if int(s4calories) > 0:
 			try:
@@ -1082,7 +1004,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 20")
+				print("diary error 20")
 
 		if int(s5calories) > 0:
 			try:
@@ -1093,7 +1015,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 21")
+				print("diary error 21")
 
 		if int(s6calories) > 0:
 			try:
@@ -1104,7 +1026,7 @@ def updatediarylog():
 				except:
 					print("commit failed")
 			except:
-				print("diary fail 22")
+				print("diary error 22")
 
 
 		try:
@@ -1114,14 +1036,10 @@ def updatediarylog():
 			print("commit diary log 2 failed")
 
 
-
-		print("Finis!")
 		try:
 			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
-			#cur.execute("SELECT * FROM diary")
 		except:
 			print("diary get failed")
-		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
 		conn.close()
 		return render_template('diary.html', diary = diary)
@@ -1133,18 +1051,12 @@ def updatediarylog():
 	else:
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
 		try:
 			cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
 		except:
-			print("errorrrr")
-		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
+			print("error")
 		diary = cur.fetchall()
-		print("boo")
 
-		#conn.commit()
 		conn.close()
 
 		return render_template('updatediarylog.html', diary=diary)
@@ -1174,10 +1086,8 @@ def diary():
 
 		# for each option I can update
 
-		print("ahh")
 		# selects all again updated
 		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
-		#cur.execute("SELECT date, max(weight), max(exercised), max(overate), max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 
 		diary = cur.fetchall()
 
@@ -1189,13 +1099,8 @@ def diary():
 	else:		
 		conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 		cur = conn.cursor()
-		#cur.execute(
-		#"SELECT servinggrams, caloriesperserving FROM calorielog WHERE food=?", 
-		#("Adobo",))
 		cur.execute("SELECT date, weight, exercised, overate, breakfast, bcalories, lunch, lcalories, dinner, dcalories, snack1, s1calories, snack2, s2calories, snack3, s3calories, snack4, s4calories, snack5, s5calories, snack6, s6calories, totalcalories FROM diary")
-		#cur.execute("SELECT date, max(weight), exercised, overate, max(breakfast), max(bcalories), max(lunch), max(lcalories), max(dinner), max(dcalories), max(snack1), max(s1calories), max(snack2), max(s2calories), max(snack3), max(s3calories), max(snack4), max(s4calories), max(snack5), max(s5calories), max(snack6), max(s6calories) FROM diary group by date ORDER BY date desc")
 		diary = cur.fetchall()
-		print("boo")
 
 		#conn.commit()
 		conn.close()
